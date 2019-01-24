@@ -1,0 +1,104 @@
+AllCops:
+  Exclude:
+    - '*.gemspec'
+    - 'spec/*.rb'
+
+inherit_from: .rubocop_todo.yml
+
+# Extra lines for readability
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundMethodBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+# Configuration parameters: AllowForAlignment.
+Layout/ExtraSpacing:
+  Enabled: false
+
+Metrics/LineLength:
+  Description: Limit lines to 80 characters.
+  StyleGuide: https://github.com/bbatsov/ruby-style-guide#80-character-limits
+  Enabled: true
+  Max: 130
+
+# Configuration parameters: CountComments.
+Metrics/ClassLength:
+  Enabled: false
+  Max: 400
+
+Metrics/AbcSize:
+  Enabled: false
+  Max: 50
+
+Metrics/MethodLength:
+  Enabled: false
+  Max: 50
+
+Metrics/BlockLength:
+  Enabled: false
+  Max: 50
+
+# Configuration parameters: CountKeywordArgs.
+Metrics/ParameterLists:
+  Max: 7
+
+Style/BlockComments:
+  Enabled: false
+
+Style/ColonMethodCall:
+  Enabled: false
+
+# if you find "a == 3" readable and "3 == a" 'unreadable', do not contribute to this project.
+Style/YodaCondition:
+  Enabled: false
+
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+Style/FormatString:
+  Enabled: false
+
+# Offense count: 1
+Metrics/CyclomaticComplexity:
+  Enabled: false
+  Max: 11
+
+# Offense count: 1
+Metrics/PerceivedComplexity:
+  Enabled: false
+  Max: 14
+
+# Cop supports --auto-correct.
+Style/RedundantSelf:
+  Enabled: false
+
+# copy-pastability is better
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+# Unstable, wants you to do %r{} if there are slashes and // if not
+Style/RegexpLiteral:
+  Enabled: false
+
+# Pretty sure I know what I'm doing here
+Style/RescueStandardError:
+  Enabled: false
+
+# Readabilty > Rubocopk
+Style/CommentedKeyword:
+  Enabled: false
+
+# how else do you keep it out of the else
+Lint/EmptyWhen:
+  Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+# And woe upon anyone who would roll their own format string parsing
+Style/FormatStringToken:
+  Enabled: false
