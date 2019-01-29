@@ -38,7 +38,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 [0.0.1]: https://github.com/ianfixes/keepachangelog_manager_gem/compare/v0.0.0...v0.0.1
 ```
 
-After running `bundle exec keepachangelog_release.md --increment-minor`:
+After running `bundle exec keepachangelog_manager.rb --increment-minor`:
 
 ```markdown
 # Change Log
