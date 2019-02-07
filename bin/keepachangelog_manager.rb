@@ -2,6 +2,8 @@
 require 'keepachangelog_manager'
 require 'optparse'
 
+$exit_code = 0
+
 # Use some basic parsing to allow command-line overrides of config
 class Parser
   def self.parse(options)
@@ -36,7 +38,7 @@ class Parser
 
       opts.on("-h", "--help", "Prints this help") do
         puts opts
-        exit
+        exit $exit_code
       end
     end
 
@@ -47,7 +49,10 @@ end
 
 # Read in command line options and make them read-only
 @cli_options = (Parser.parse ARGV).freeze
-Parser.parse %w[--help] if @cli_options.empty?
+if @cli_options.empty?
+  $exit_code = 1
+  Parser.parse %w[--help]
+end
 
 repo = KeepAChangelogManager::Repo.new(`git rev-parse --show-toplevel`.strip)
 new_version = repo.changelog.update(@cli_options)

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 ### Changed
+* No-argument invocation (which shows help) now exits with a 1.  Explicitly-requested help still exits 0.
 
 ### Deprecated
 
