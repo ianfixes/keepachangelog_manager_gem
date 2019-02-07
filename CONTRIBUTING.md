@@ -1,6 +1,6 @@
-# Contributing to the KeepAChangelog gem
+# Contributing to the KeepAChangelog Manager gem
 
-KeepAChangelog uses a very standard GitHub workflow.
+KeepAChangelogManager uses a very standard GitHub workflow.
 
 1. Fork the repository on github
 2. Make your desired changes
