@@ -3,6 +3,10 @@
 # This script automates the gem release project for this repo.
 # It can very likely be adapted to your own.
 
+GEM_NAME=keepachangelog_manager
+GEM_MODULE=KeepAChangelogManager
+PUSH_REMOTE=upstream
+
 # test if we have an arguments on the command line
 if [ $# -lt 1 ]
 then
@@ -15,7 +19,7 @@ fi
 cleanup () {
   set +x +e
   echo -e "\n### Reverting uncommitted changes"
-  git checkout README.md CHANGELOG.md lib/keepachangelog_manager/version.rb
+  git checkout README.md CHANGELOG.md lib/$GEM_NAME/version.rb
   if [ $DID_STASH -eq 0 ]; then
     echo -e "\n### Unstashing changes"
     git stash pop
@@ -29,9 +33,13 @@ echo -ne "\n### Stashing changes..."
 STASH_OUTPUT=$(git stash save)
 [ "$DIDNT_STASH" != "$STASH_OUTPUT" ]
 DID_STASH=$?
+echo DID_STASH=$DID_STASH
 
 trap "cleanup 1" INT TERM ERR
 set -xe
+
+echo "### Checking existence of specified git push destination '$PUSH_REMOTE'"
+git remote get-url $PUSH_REMOTE
 
 # ensure latest master
 git pull --rebase
@@ -43,23 +51,23 @@ echo "Checking whether new version string is a semver"
 echo $NEW_VERSION | grep -Eq ^[0-9]*\.[0-9]*\.[0-9]*$
 
 # write version.rb with new version
-cat << EOF > lib/keepachangelog_manager/version.rb
-module KeepAChangelogManager
+cat << EOF > lib/$GEM_NAME/version.rb
+module $GEM_MODULE
   VERSION = "$NEW_VERSION".freeze
 end
 EOF
 
 # update README with new version
-sed -e "s/\/gems\/keepachangelog_manager\/[0-9]*\.[0-9]*\.[0-9]*)/\/gems\/keepachangelog_manager\/$NEW_VERSION)/" -i "" README.md
+sed -e "s/\/gems\/$GEM_NAME\/[0-9]*\.[0-9]*\.[0-9]*)/\/gems\/$GEM_NAME\/$NEW_VERSION)/" -i "" README.md
 
 # mutation!
-git add README.md CHANGELOG.md lib/keepachangelog_manager/version.rb
+git add README.md CHANGELOG.md lib/$GEM_NAME/version.rb
 git commit -m "v$NEW_VERSION bump"
 git tag -a v$NEW_VERSION -m "Released version $NEW_VERSION"
-gem build *.gemspec
-gem push *-$NEW_VERSION.gem
-git push upstream
-git push upstream --tags
+gem build $GEM_NAME.gemspec
+gem push $GEM_NAME-$NEW_VERSION.gem
+git push $PUSH_REMOTE
+git push $PUSH_REMOTE --tags
 
 # do normal cleanup
 cleanup 0
