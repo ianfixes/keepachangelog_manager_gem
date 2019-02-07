@@ -1,7 +1,7 @@
 
 # `keepachangelog_manager` Ruby gem for your CHANGELOG.md
 [![Gem Version](https://badge.fury.io/rb/keepachangelog_manager.svg)](https://rubygems.org/gems/keepachangelog_manager)
-[![Documentation](http://img.shields.io/badge/docs-rdoc.info-blue.svg)](http://www.rubydoc.info/gems/keepachangelog_manager/0.0.1)
+[![Documentation](http://img.shields.io/badge/docs-rdoc.info-blue.svg)](http://www.rubydoc.info/gems/keepachangelog_manager/0.0.2)
 [![Build Status](http://badges.herokuapp.com/travis/ianfixes/keepachangelog_manager_gem?label=build&branch=master)](https://travis-ci.org/ianfixes/keepachangelog_manager_gem)
 
 If you follow the [Keep A Changelog](http://keepachangelog.com) `CHANGELOG.md` style, this gem automates the process of updating the file for a release.
