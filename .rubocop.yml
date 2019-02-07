@@ -102,3 +102,7 @@ Style/SymbolArray:
 # And woe upon anyone who would roll their own format string parsing
 Style/FormatStringToken:
   Enabled: false
+
+Style/GlobalVars:
+  Exclude:
+    - bin/*.rb

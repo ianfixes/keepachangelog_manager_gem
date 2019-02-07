@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+* `release-new-version.sh` script
 
 ### Changed
 * No-argument invocation (which shows help) now exits with a 1.  Explicitly-requested help still exits 0.
