@@ -68,6 +68,7 @@ gem build $GEM_NAME.gemspec
 gem push $GEM_NAME-$NEW_VERSION.gem
 git push $PUSH_REMOTE
 git push $PUSH_REMOTE --tags
+git fetch
 
 # do normal cleanup
 cleanup 0
