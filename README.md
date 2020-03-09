@@ -83,7 +83,7 @@ Add the following to your `Gemfile`:
 
 ```ruby
 source 'https://rubygems.org'
-gem 'keepachangelog'
+gem 'keepachangelog_manager'
 ```
 
 ## Author
