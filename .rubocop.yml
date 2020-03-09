@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - '*.gemspec'
     - 'spec/*.rb'
+    - 'bin/*'
 
 inherit_from: .rubocop_todo.yml
 
@@ -105,4 +106,8 @@ Style/FormatStringToken:
 
 Style/GlobalVars:
   Exclude:
-    - bin/*.rb
+    - exe/*.rb
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+  Enabled: false
