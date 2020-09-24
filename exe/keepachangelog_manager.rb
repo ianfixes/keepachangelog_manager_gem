@@ -7,7 +7,9 @@ $exit_code = 0
 # Use some basic parsing to allow command-line overrides of config
 class Parser
   def self.parse(options)
-    parsed_config = {}
+    parsed_config = {
+      remote: 'origin',
+    }
 
     opt_parser = OptionParser.new do |opts|
       opts.banner = "Usage: #{File.basename(__FILE__)} <ONLY ONE of the following options>"
@@ -36,6 +38,10 @@ class Parser
         parsed_config[:inc_patch] = v
       end
 
+      opts.on("--remote=REMOTE", "Use git remote REMOTE (default: 'origin')") do |r|
+        parsed_config[:remote] = r
+      end
+
       opts.on("-h", "--help", "Prints this help") do
         puts opts
         exit $exit_code
@@ -54,6 +60,6 @@ if @cli_options.empty?
   Parser.parse %w[--help]
 end
 
-repo = KeepAChangelogManager::Repo.new(`git rev-parse --show-toplevel`.strip)
-new_version = repo.changelog.update(@cli_options)
+repo = KeepAChangelogManager::Repo.new(`git rev-parse --show-toplevel`.strip, @cli_options[:remote])
+new_version = repo.changelog.update(@cli_options.reject { |k, _v| k == :remote })
 puts new_version
