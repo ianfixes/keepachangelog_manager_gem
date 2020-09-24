@@ -12,8 +12,9 @@ module KeepAChangelogManager
     # Create a new Repo representing git repository, given its path
     #
     # @param root String path to root directory of repository
-    def initialize(root)
+    def initialize(root, remote = 'origin')
       @root = root
+      @remote = remote
     end
 
     # Get the repository name.  It is assumed to be the name of the repo root directory
@@ -30,7 +31,7 @@ module KeepAChangelogManager
     #
     # @return String
     def origin_url
-      `git remote get-url origin`
+      `git remote -v`.lines.grep(/^#{@remote}\b/).first.split(/\s+/)[1]
     end
 
     # Extract the owner from a git URL
